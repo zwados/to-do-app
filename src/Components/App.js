@@ -69,8 +69,8 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        To do app
-      <AddTask />
+        <h1>To do app</h1>
+        <AddTask />
         <br></br>
         <TaskList tasks={this.state.tasks} delete={this.deleteTask} change={this.changeTaskStatus} />
       </div >
