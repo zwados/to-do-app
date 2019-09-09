@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AddTask from './AddTask';
 import TaskList from './TaskList'
-import { tsStringKeyword } from '@babel/types';
+
 
 class App extends Component {
   state = {
@@ -40,13 +40,29 @@ class App extends Component {
     const index = tasks.findIndex(task => task.id === id);
     tasks.splice(index, 1);
 
+    // let tasks = [...this.state.tasks];
+    // tasks = tasks.filter(task => task.id !== id);
+    //this.setState({
+    //  tasks
+    //})
+
     this.setState({
       tasks
     })
   }
 
   changeTaskStatus = (id) => {
-    console.log('changedStatus elementu o ' + id);
+    const tasks = [...this.state.tasks];
+    tasks.forEach(task => {
+      if (task.id === id) {
+        task.active = false;
+        task.finishDate = new Date().getTime()
+      }
+    })
+
+    this.setState({
+      tasks
+    })
   }
 
 
