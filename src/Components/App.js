@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AddTask from './AddTask';
 import TaskList from './TaskList'
+import { tsStringKeyword } from '@babel/types';
 
 class App extends Component {
   state = {
@@ -35,6 +36,13 @@ class App extends Component {
 
   deleteTask = (id) => {
     console.log('delete elementu o id ' + id);
+    const tasks = [...this.state.tasks];
+    const index = tasks.findIndex(task => task.id === id);
+    tasks.splice(index, 1);
+
+    this.setState({
+      tasks
+    })
   }
 
   changeTaskStatus = (id) => {
