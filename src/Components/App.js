@@ -5,6 +5,7 @@ import TaskList from './TaskList'
 
 
 class App extends Component {
+  counter = 3;
   state = {
     tasks: [
       {
@@ -65,12 +66,29 @@ class App extends Component {
     })
   }
 
+  addTask = (text, date, important) => {
+    const task = {
+      id: this.counter,
+      text: text, //input value
+      date: date, //input value
+      important: important, //input checked
+      active: true,
+      finishDate: null
+    }
+    this.counter++
+
+    this.setState(prevState => ({
+      tasks: [task, ...prevState.tasks]
+    }))
+    return true
+  }
+
 
   render() {
     return (
       <div className="App">
         <h1>To do app</h1>
-        <AddTask />
+        <AddTask add={this.addTask} />
         <br></br>
         <TaskList tasks={this.state.tasks} delete={this.deleteTask} change={this.changeTaskStatus} />
       </div >
